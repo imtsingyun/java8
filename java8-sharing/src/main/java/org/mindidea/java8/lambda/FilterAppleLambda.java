@@ -4,7 +4,7 @@
  * @date 2020/11/14 23:31
  * Copyright (c) 2020 MindIdea.org, All Rights Reserved.
  */
-package org.mindidea.java8;
+package org.mindidea.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import java.util.List;
 public class FilterAppleLambda {
 
     /**
-     * 一个接口中只有一个方法，则这个接口称为 Functional
+     * 一个接口中只有一个方法，则这个接口称为函数式接口 Functional
      *
      * @author Tsingyun(青雲)
      * @version V1.0

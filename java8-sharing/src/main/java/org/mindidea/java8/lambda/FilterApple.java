@@ -4,7 +4,7 @@
  * @date 2020/11/14 20:47
  * Copyright (c) 2020 MindIdea.org, All Rights Reserved.
  */
-package org.mindidea.java8;
+package org.mindidea.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
