@@ -12,11 +12,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
  * @author Tsingyun(青雲)
- * @version V1.0
+ * @version V1.0 中华民国 中华人民共和国
  * @createTime 2020/11/15 13:56
  * @blog https://mindidea.org
  */
@@ -25,8 +27,9 @@ public class CreateStream {
     public static void main(String[] args) {
 //        createStreamFromCollection().forEach(System.out::println);
 //        createStreamFromFile();
-        createStreamFromIterator().forEach(System.out::println);
-        createStreamFromGenerate().forEach(System.out::println);
+//        createStreamFromIterator().forEach(System.out::println);
+//        createStreamFromGenerate().forEach(System.out::println);
+        createObjStreamFromGenerate().forEach(System.out::println);
     }
 
     /**
@@ -71,7 +74,9 @@ public class CreateStream {
      * @createTime 2020/11/15 14:58
      */
     private static Stream<String> createStreamFromFile() {
-        Path path = Paths.get("E:\\Github\\java8\\java8-sharing\\src\\main\\java\\org\\mindidea\\java8\\steam\\CreateStream.java");
+        Path path = Paths.get("E:\\Github\\java8\\java8-sharing\\" +
+                "src\\main\\java\\org\\mindidea\\java8\\steam\\CreateStream.java");
+        
         try (Stream<String> lines = Files.lines(path)) {
             lines.forEach(System.out::println);
             return lines;
@@ -99,6 +104,53 @@ public class CreateStream {
      * @createTime 2020/11/15 15:02
      */
     private static Stream<Double> createStreamFromGenerate() {
-        return  Stream.generate(Math::random).limit(10);
+        return Stream.generate(Math::random).limit(10);
+    }
+
+    /**
+     * generator the stream object from generate
+     *
+     * @return Stream
+     * @author Tsingyun(青雲)
+     * @createTime 2020/11/15 17:47
+     */
+    private static Stream<Obj> createObjStreamFromGenerate() {
+        return Stream.generate(new ObjSupplier()).limit(10);
+    }
+
+    static class ObjSupplier implements Supplier<Obj> {
+        private final Random random = new Random(System.currentTimeMillis());
+
+        @Override
+        public Obj get() {
+            int index = random.nextInt(100);
+            return new Obj(index, "name->" + index);
+        }
+    }
+
+    static class Obj {
+        private final int id;
+        private final String name;
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Obj(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "Obj{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
     }
 }
