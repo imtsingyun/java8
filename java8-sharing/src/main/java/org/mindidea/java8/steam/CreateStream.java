@@ -76,7 +76,7 @@ public class CreateStream {
     private static Stream<String> createStreamFromFile() {
         Path path = Paths.get("E:\\Github\\java8\\java8-sharing\\" +
                 "src\\main\\java\\org\\mindidea\\java8\\steam\\CreateStream.java");
-        
+
         try (Stream<String> lines = Files.lines(path)) {
             lines.forEach(System.out::println);
             return lines;
